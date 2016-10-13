@@ -29,7 +29,6 @@ public class Sales {
     public double getSales_total() {
         return Sales_total;
     }
-
     public void setSales_total(double sales_total) {
         Sales_total = sales_total;
     }
@@ -37,7 +36,6 @@ public class Sales {
     public int getType_id() {
         return Type_id;
     }
-
     public void setType_id(int type_id) {
         Type_id = type_id;
     }
