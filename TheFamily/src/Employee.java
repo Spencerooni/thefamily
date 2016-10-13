@@ -8,6 +8,9 @@ public class Employee {
         private String Ni_num;
         private String IBAN_num;
         private double Salary;
+        private int Bu_id;
+        private int Type_id;
+
 
         public int getId() {
             return Employee_id;
@@ -51,4 +54,18 @@ public class Employee {
             this.Salary = salary;
         }
 
+
+        public int getBu_id() {
+        return Bu_id;
+    }
+        public void setBu_id(int bu_id) {
+        Bu_id = bu_id;
+    }
+
+        public int getType_id() {
+        return Type_id;
+    }
+        public void setType_id(int type_id) {
+        Type_id = type_id;
+    }
 }
