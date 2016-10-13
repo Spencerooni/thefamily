@@ -1,27 +1,38 @@
--- MySQL dump 10.13  Distrib 5.7.16, for osx10.11 (x86_64)
---
--- Host: localhost    Database: TheFamily
--- ------------------------------------------------------
--- Server version	5.7.16
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+create database TheFamily;
+use TheFamily;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+create table Employee (
+	Employee_id int not null auto_increment,
+    Name varchar(20) not null,
+    Address varchar(30) not null,
+    Ni_num varchar(10) not null,
+    Iban_num varchar(15) not null,
+    Salary double,
+    Bu_id int,
+    Type_id int,
+    primary key (Employee_id)
+    );
+    
+    CREATE TABLE Employee_Type
+(
+Type_id int NOT NULL AUTO_INCREMENT,
+Type_name varchar(30) NOT NULL,
+PRIMARY KEY (Type_id)
+);
 
--- Dump completed on 2016-10-13 12:42:26
+CREATE TABLE Sales
+(
+Sales_id int NOT NULL AUTO_INCREMENT,
+Commission_rate double NOT NULL,
+Sales_total int NOT NULL,
+Type_id int NOT NULL,
+PRIMARY KEY (Sales_id),
+FOREIGN KEY (Type_id) REFERENCES Employee_Type(Type_id)
+);
+select * from Employee_Type;
+
+CREATE TABLE BU (
+BU_id int not null PRIMARY KEY AUTO_INCREMENT,
+BU_name varchar(20)
+);
