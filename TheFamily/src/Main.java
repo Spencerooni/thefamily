@@ -6,11 +6,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         DatabaseAccess db = new DatabaseAccess();
-        List<Employee> employees = db.getEmployee(4);
+        List<Employee> employees = db.getEmployees();
 
         employees.stream()
                 .map(x ->
-                String.format("%s","%s","%s","%s","%s","%s",
+                String.format("%s, %s, %s, %s, %s, %s",
                         x.getId(),
                         x.getName(),
                         x.getAddress(),

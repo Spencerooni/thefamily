@@ -4,7 +4,7 @@ import java.util.List;
 
 public class DatabaseAccess {
 
-    public List<Employee> getEmployee(int numberOfEmployees){
+    public List<Employee> getEmployees(){
         Connection conn = null;
         List<Employee> employees = new ArrayList<Employee>();
         try {
@@ -12,17 +12,8 @@ public class DatabaseAccess {
                     DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false",
                             "root", "password");
 
-            Statement statement = null;
-
-            statement = conn.createStatement();
-
-            ResultSet result1 = statement.executeQuery(String.format(
-                    "Select Employee_id, Name, Address, Ni_num, IBAN_num, Salary from Employee order by Employee_id desc limit %s",
-                    numberOfEmployees));
-
-            PreparedStatement prep1 = conn.prepareStatement(String.format(
-                    "Select Employee_id, Name, Address, Ni_num, IBAN_num, Salary from Employee order by Employee_id desc limit %s",
-                    numberOfEmployees));
+            PreparedStatement prep1 = conn.prepareStatement(
+                    "Select Employee_id, Name, Address, Ni_num, IBAN_num, Salary from Employee order by Employee_id desc");
 
             ResultSet result = prep1.executeQuery();
 
