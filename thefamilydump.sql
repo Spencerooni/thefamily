@@ -60,7 +60,13 @@ values ("B. White", "13 Marley Park", "RR 12 34 55 B", "DE89370400440532013000",
 Insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id)
 values ("C. Black", "10 Rainey Street", "AL 22 36 55 K", "DZ4000400174401001050486", 25000, 3,2);
 
-
 Insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id)
 values ("J. Rule", "15 Sunny Crescent", "RT 00 36 55 L", "BR9700360305000010009795493P1", 18000, 3,3);
+
+Create view Emp_Per_Bu as
+select a.Name as Employee,
+        b.Bu_name as BusinessUnit
+        from Employee a
+       JOIN BU b
+       on a.Bu_id = b.Bu_id;
 
