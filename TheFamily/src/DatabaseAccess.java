@@ -47,8 +47,8 @@ public class DatabaseAccess {
 
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false");
-            String sql = String.format("insert into Employee (Name, Address, Ni_num, IBAN_num, Salary) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", name, address, ni_num, iban_num, salary, bu_id, type_id);
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "password");
+            String sql = String.format("insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", name, address, ni_num, iban_num, salary, bu_id, type_id);
 
             System.out.println(sql);
 

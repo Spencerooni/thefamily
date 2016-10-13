@@ -21,7 +21,7 @@ public class Main {
                                 x.getType_id())
                 ).forEach(System.out::println);
 
-        db.CreateEmployee("S. O'Hara", "75 Woodland Walk, Limavady", "JX 22 22 33 L", "XX79 3704 0044 0532 0630 00", 20000, 1, 1);
+        db.CreateEmployee("S. O''Hara", "75 Woodland Walk, Limavady", "JX 22 22 33 L", "XX79 3704 0044 0532 0630 00", 20000, 1, 1);
 
         System.out.println("Employee Added to the System!");
 
