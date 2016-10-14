@@ -79,7 +79,7 @@ public class Menu {
                             System.out.println("Total Sales");
                             totalSales = keyboard.nextDouble();
 
-                            // db.createSalesEmployee
+                           db.createSalesEmployee(name, address, niNum, ibanNum, salary, buId, roleId, comRate, totalSales);
 
                         } else {
 
@@ -94,7 +94,7 @@ public class Menu {
 
                         if (choiceReportMenu == 1) {
 
-                            db.EmpPerBu();
+                            employees = db.EmpPerBu();
 
                         }
                     }
