@@ -1,3 +1,4 @@
+drop database if exists TheFamily;
 create database TheFamily;
 use TheFamily;
 
@@ -10,6 +11,7 @@ create table Employee (
     Salary decimal(8,2),
     Bu_id int,
     Type_id int,
+    Sales_id int unique,
     primary key (Employee_id)
     );
     
@@ -25,11 +27,8 @@ CREATE TABLE Sales
 Sales_id int NOT NULL AUTO_INCREMENT,
 Commission_rate decimal(5,2) NOT NULL,
 Sales_total int NOT NULL,
-Type_id int NOT NULL,
-PRIMARY KEY (Sales_id),
-FOREIGN KEY (Type_id) REFERENCES Employee_Type(Type_id)
+PRIMARY KEY (Sales_id)
 );
-select * from Employee_Type;
 
 CREATE TABLE BU (
 BU_id int not null PRIMARY KEY AUTO_INCREMENT,
@@ -45,11 +44,11 @@ values ('Consultant');
 Insert into Employee_Type (Type_Name)
 values ('Architect');
 
-Insert into Sales (Commission_rate, Sales_total, Type_id)
-values (15, 500, 2);
+Insert into Sales (Commission_rate, Sales_total)
+values (15, 500);
 
-Insert into Sales (Commission_rate, Sales_total, Type_id)
-values (20, 1500, 3);
+Insert into Sales (Commission_rate, Sales_total)
+values (20, 1500);
 
 Insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id)
 values ("A. Smith", "12 Glen Close", "QQ 12 34 56 C", "AL47212110090000000235698741", 12000, 1,1);
@@ -69,4 +68,7 @@ select a.Name as Employee,
         from Employee a
        JOIN BU b
        on a.Bu_id = b.Bu_id;
+
+
+ALTER TABLE Employee ADD FOREIGN KEY (Sales_id) REFERENCES Sales(sales_id);
 
