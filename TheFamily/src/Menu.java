@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,57 +10,53 @@ public class Menu {
     public static void main(String[] args)
     {
         String choiceMainMenu;
-        int choiceHRMenu;
+        int choiceHRMenu =0;
         int choiceReportMenu;
-        int choiceAdminMenu;
-        String ADMIN = "ADMIN";
         String choiceSalesEmp;
         int choiceFINANCEMenu;
         String name, address, niNum, ibanNum, bicNum;
-        double salary;
+        double salary, comRate, salesTotal;
         int buId, roleId;
         final String HR = "HR";
         final String FINANCE = "FINANCE";
+
+        DatabaseAccess db = new DatabaseAccess();
+        List<Employee> employees;
 
         System.out.println("THE FAMILY DATABASE");
         System.out.println("\nLogin: Please enter your department: ");
         choiceMainMenu = keyboard.nextLine();
 
-        switch (choiceMainMenu)
-        {
-            case HR:
-                System.out.println("\n1. Add new employee");
-                System.out.println("2. Generate a report");
-                System.out.println("Please enter your choice: ");
-                choiceHRMenu = keyboard.nextInt();
+        do {
 
-                if (choiceHRMenu == 1)
-                {
-                    System.out.println("Add new sales employee? (y/n): ");
-                    choiceSalesEmp = keyboard.nextLine();
+            switch (choiceMainMenu) {
+                case HR:
+                    System.out.println("\nMAIN MENU");
+                    System.out.println("1. Add new employee");
+                    System.out.println("2. Generate a report");
+                    System.out.println("0. Exit the System");
+                    System.out.println("Please enter your choice: ");
+                    choiceHRMenu = keyboard.nextInt();
 
-                    if ((choiceSalesEmp.equals("y")) || (choiceSalesEmp.equals("Y")))
-                    {
-                        // do the sales employee stuff in here
-                    } else if ((choiceSalesEmp.equals("n")) || (choiceSalesEmp.equals("N")))
-                    {
-                        System.out.println("New Employee");
+                    if (choiceHRMenu == 1) {
+
+                        // System.out.println("New Employee");
                         System.out.println("Name");
-                        name = keyboard.nextLine();
+                        name = keyboard.next();
 
                         System.out.println("Address");
-                        address = keyboard.nextLine();
+                        address = keyboard.next();
 
                         System.out.println("NI number");
-                        niNum = keyboard.nextLine();
+                        niNum = keyboard.next();
                         // method to convert to upper case and create spaces
                         // or do we need spaces
 
                         System.out.println("IBAN");
-                        ibanNum = keyboard.nextLine();
+                        ibanNum = keyboard.next();
 
                         System.out.println("BIC");
-                        bicNum = keyboard.nextLine();
+                        bicNum = keyboard.next();
 
                         System.out.println("Salary");
                         salary = keyboard.nextDouble();
@@ -76,39 +73,64 @@ public class Menu {
                         System.out.println("Role:");
                         roleId = keyboard.nextInt();
 
-                        // put in here the excute update query
-                    }
-                } else if (choiceHRMenu == 2)
-                {
-                    System.out.println("Available reports: ");
-                    System.out.println("1. Employees by Business Unit");
-                    System.out.println("Please enter your choice: ");
-                    choiceReportMenu = keyboard.nextInt();
+                        if (roleId == 1) {
+                            System.out.println("Commission Rate");
+                            comRate = keyboard.nextDouble();
 
-                    if (choiceReportMenu == 1)
-                    {
-                        // do the Employees by BU report
-                    } else
-                    {
+                            System.out.println("Sales Total");
+                            salesTotal = keyboard.nextDouble();
+
+                        }
+
+
+                        db.CreateEmployee(name, address, niNum, ibanNum, salary, buId, roleId);
+
+                        System.out.println("Employee Added to the System!");
+
+                        employees = db.getEmployees();
+
+                        employees.stream()
+                                .map(x ->
+                                        String.format("%s, %s, %s, %s, %s, %s, %s, %s",
+                                                x.getId(),
+                                                x.getName(),
+                                                x.getAddress(),
+                                                x.getNi_num(),
+                                                x.getIBAN_num(),
+                                                x.getSalary(),
+                                                x.getBu_id(),
+                                                x.getType_id())
+                                ).forEach(System.out::println);
+
+                    } else if (choiceHRMenu == 2) {
+                        System.out.println("Available reports: ");
+                        System.out.println("1. Employees by Business Unit");
+                        System.out.println("Please enter your choice: ");
+                        choiceReportMenu = keyboard.nextInt();
+
+                        if (choiceReportMenu == 1) {
+                            db.EmpPerBu();
+
+                        } else {
+                            // Invalid input, back to HR Reports Menu
+                        }
+
+                    }
+                    break;
+
+                case FINANCE:
+                    System.out.println("1. Generate a report");
+                    System.out.println("Please enter your choice: ");
+                    choiceFINANCEMenu = keyboard.nextInt();
+
+                    if (choiceFINANCEMenu == 1) {
+                        // do the report containing each employee and their gross pay for the current pay period
+                    } else {
                         // Invalid input, back to HR Reports Menu
                     }
+            }
 
-                }
-                break;
-
-            case FINANCE:
-                System.out.println("1. Generate a report");
-                System.out.println("Please enter your choice: ");
-                choiceFINANCEMenu = keyboard.nextInt();
-
-                if (choiceFINANCEMenu == 1)
-                {
-                    // do the report containing each employee and their gross pay for the current pay period
-                } else
-                {
-                    // Invalid input, back to HR Reports Menu
-                }
-        }
+        } while (choiceHRMenu != 0);
 
 
     }// main
