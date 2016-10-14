@@ -10,6 +10,7 @@ public class Employee {
         private double Salary;
         private int Bu_id;
         private int Type_id;
+        private int Sales_id;
 
 
         public int getId() {
@@ -68,4 +69,31 @@ public class Employee {
         public void setType_id(int type_id) {
         Type_id = type_id;
     }
+
+        public int getSales_id() {
+        return Sales_id;
+    }
+        public void setSales_id(int sales_id) {
+        Sales_id = sales_id;
+    }
+
+
+    public void createSalesEmployee(int employee_id, String name, String address, String ni_num, String iban_num,
+                                    double salary, int bu_id, int type_id, int sales_id, double commission_rate,
+                                    double sales_total) {
+
+        Employee_id = employee_id;
+        Name = name;
+        Address = address;
+        Ni_num = ni_num;
+        IBAN_num = iban_num;
+        Salary = salary;
+        Bu_id = bu_id;
+        Type_id = type_id;
+        Sales_id = sales_id;
+
+
+    }
+
+
 }

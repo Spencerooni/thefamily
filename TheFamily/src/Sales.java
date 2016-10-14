@@ -8,7 +8,6 @@ public class Sales {
     private int Sales_id;
     private double Commission_rate;
     private double Sales_total;
-    private int Type_id;
 
     public int getSales_id() {
         return Sales_id;
@@ -31,13 +30,6 @@ public class Sales {
     }
     public void setSales_total(double sales_total) {
         Sales_total = sales_total;
-    }
-
-    public int getType_id() {
-        return Type_id;
-    }
-    public void setType_id(int type_id) {
-        Type_id = type_id;
     }
 
 }

@@ -41,5 +41,12 @@ public class Main {
                 ).forEach(System.out::println);
 
         db.EmpPerBu();
+
+        db.createSalesEmployee("E. Compston", "12 Mount Charles", "JU 11 30 24 K", "UI23 3794 1095 0532 0630 00", 24000, 1, 1, 1, 0.25f, 39000);
+        System.out.println("Sales Employee Added to the System!");
+
+        ///////// SOMETHING HERE ////////////
+
+
     }
 }
