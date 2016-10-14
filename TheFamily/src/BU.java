@@ -24,4 +24,9 @@ public class BU {
         this.Bu_name = name;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

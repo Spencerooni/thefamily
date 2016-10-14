@@ -91,9 +91,10 @@ public class Employee {
         Bu_id = bu_id;
         Type_id = type_id;
         Sales_id = sales_id;
-
-
+        
     }
-
-
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
