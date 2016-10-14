@@ -68,4 +68,9 @@ public class Employee {
         public void setType_id(int type_id) {
         Type_id = type_id;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
