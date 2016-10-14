@@ -10,16 +10,19 @@ public class Menu {
     public static void main(String[] args)
     {
         String choiceMainMenu;
+
         int choiceHRMenu = 0;
         int choiceReportMenu;
         int choiceFINANCEMenu;
         String name, address, niNum, ibanNum, bicNum;
         double salary, comRate, totalSales;
+
         int buId, roleId;
         final String HR = "HR";
         final String FINANCE = "FINANCE";
 
         DatabaseAccess db = new DatabaseAccess();
+
         List<Employee> employees = db.getEmployees();
         List<String> fromReport;
 
@@ -127,7 +130,6 @@ public class Menu {
                             fromReport = db.EmpPerBu();
                             fromReport.stream()
                                 .forEach(System.out::println);
-
                         }
                     }
                     break;
@@ -136,6 +138,7 @@ public class Menu {
                     System.out.println("1. Generate a report");
                     System.out.println("Please enter your choice: ");
                     choiceFINANCEMenu = keyboard.nextInt();
+
 
                     if (choiceFINANCEMenu == 1) {
                         System.out.println("Work in progress");
