@@ -109,10 +109,6 @@ public class Menu {
                         System.out.println("Work in progress");
                     }
             }
-
         } while ((choiceHRMenu != 0));
-
-
     }// main
-
 }
