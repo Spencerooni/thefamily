@@ -26,7 +26,10 @@ public class Menu {
         List<Employee> employees = db.getEmployees();
         List<String> fromReport;
 
+        System.out.println("*******************");
         System.out.println("THE FAMILY DATABASE");
+        System.out.println("*******************");
+        System.out.println("");
         System.out.println("\nLogin: Please enter your department: ");
         choiceMainMenu = keyboard.nextLine();
 
@@ -37,41 +40,51 @@ public class Menu {
                     System.out.println("\n1. Add new employee");
                     System.out.println("2. Generate a report");
                     System.out.println("0. Exit the System");
+                    System.out.println();
                     System.out.println("Please enter your choice: ");
                     choiceHRMenu = keyboard.nextInt();
-
+                    System.out.println();
                     if (choiceHRMenu == 1) {
 
                         System.out.println("New Employee");
                         System.out.println("Name");
                         name = keyboard.next();
 
+                        System.out.println();
                         System.out.println("Address");
                         address = keyboard.next();
 
+                        System.out.println();
                         System.out.println("NI number");
                         niNum = keyboard.next();
                         // method to convert to upper case and create spaces
                         // or do we need spaces
 
+                        System.out.println();
                         System.out.println("IBAN");
                         ibanNum = keyboard.next();
 
+                        System.out.println();
                         System.out.println("BIC");
                         bicNum = keyboard.next();
 
+                        System.out.println();
                         System.out.println("Salary");
                         salary = keyboard.nextDouble();
 
+                        System.out.println();
                         System.out.println("1. Evolve");
                         System.out.println("2. SMART");
                         System.out.println("3. Enterprise");
+                        System.out.println();
                         System.out.println("Business Unit:");
                         buId = keyboard.nextInt();
 
+                        System.out.println();
                         System.out.println("1. Sales");
                         System.out.println("2. Consultant");
                         System.out.println("3. Architect");
+                        System.out.println();
                         System.out.println("Role:");
                         roleId = keyboard.nextInt();
 
@@ -80,6 +93,7 @@ public class Menu {
                             System.out.println("Commission Rate");
                             comRate = keyboard.nextDouble();
 
+                            System.out.println();
                             System.out.println("Total Sales");
                             totalSales = keyboard.nextDouble();
 
@@ -122,6 +136,7 @@ public class Menu {
                     } else if (choiceHRMenu == 2) {
                         System.out.println("Available reports: ");
                         System.out.println("1. Employees by Business Unit");
+                        System.out.println();
                         System.out.println("Please enter your choice: ");
                         choiceReportMenu = keyboard.nextInt();
 
@@ -136,6 +151,7 @@ public class Menu {
 
                 case FINANCE:
                     System.out.println("1. Generate a report");
+                    System.out.println();
                     System.out.println("Please enter your choice: ");
                     choiceFINANCEMenu = keyboard.nextInt();
 

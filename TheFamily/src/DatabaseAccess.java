@@ -130,8 +130,6 @@ public class DatabaseAccess {
                 String fin = employee.toString() + " " + bu.toString();
 
                 employees.add(fin);
-
-                System.out.println(fin);
             }
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
