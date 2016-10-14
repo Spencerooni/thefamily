@@ -10,7 +10,7 @@ public class DatabaseAccess {
         try {
             conn =
                     DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false",
-                            "root", "password");
+                            "root", "T!a1a!ng0");
 
             PreparedStatement prep1 = conn.prepareStatement(
                     "Select Employee_id, Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id from Employee order by Employee_id desc");
@@ -41,14 +41,14 @@ public class DatabaseAccess {
     }
 
 
-    public Employee CreateEmployee(String name, String address, String ni_num, String iban_num, double salary, int bu_id, int type_id) {
+    public List<Employee> CreateEmployee(String name, String address, String ni_num, String iban_num, double salary, int bu_id, int type_id) {
         Connection conn = null;
 
         List<Employee> employees = new ArrayList<Employee>();
 
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "password");
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "T!a1a!ng0");
             String sql = String.format("insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", name, address, ni_num, iban_num, salary, bu_id, type_id);
 
             System.out.println(sql);
@@ -128,7 +128,7 @@ public class DatabaseAccess {
 
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "password");
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "T!a1a!ng0");
             String empSql = String.format("insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", name, address, ni_num, iban_num, salary, bu_id, type_id);
             String salesSql = String.format("insert into Sales (Commission_rate, Sales_total) values ('%s', '%s')", commission_rate, sales_total);
 
@@ -160,7 +160,7 @@ public class DatabaseAccess {
 
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "password");
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "T!a1a!ng0");
             String sql = String.format("select * from emp_per_bu");
 
             System.out.println(sql);

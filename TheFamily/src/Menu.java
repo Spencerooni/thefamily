@@ -94,7 +94,7 @@ public class Menu {
 
                         if (choiceReportMenu == 1) {
 
-                            employees = db.EmpPerBu();
+                            db.EmpPerBu();
 
                         }
                     }
