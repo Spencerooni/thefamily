@@ -63,11 +63,12 @@ Insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id)
 values ("J. Rule", "15 Sunny Crescent", "RT 00 36 55 L", "BR9700360305000010009795493P1", 18000, 3,3);
 
 Create view Emp_Per_Bu as
-select a.Name as Employee,
-        b.Bu_name as BusinessUnit
-        from Employee a
-       JOIN BU b
-       on a.Bu_id = b.Bu_id;
+select a.Bu_name as BusinessUnit,
+        b.Name as Employee
+        from BU a
+       JOIN Employee b
+       on a.Bu_id = b.Bu_id
+       order by BU_name;
 
 
 ALTER TABLE Employee ADD FOREIGN KEY (Sales_id) REFERENCES Sales(sales_id);
