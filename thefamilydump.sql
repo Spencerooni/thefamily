@@ -2,6 +2,13 @@ drop database if exists TheFamily;
 create database TheFamily;
 use TheFamily;
 
+CREATE TABLE Employee_Type
+(
+Type_id int NOT NULL AUTO_INCREMENT,
+Type_name varchar(30) NOT NULL unique,
+PRIMARY KEY (Type_id)
+);
+
 create table Employee (
     Employee_id int not null auto_increment,
     Name varchar(20) not null,
@@ -11,16 +18,10 @@ create table Employee (
     Salary decimal(8,2),
     Bu_id int,
     Type_id int,
+    Sales_id int,
     primary key (Employee_id)
-    );
-    
-    CREATE TABLE Employee_Type
-(
-Type_id int NOT NULL AUTO_INCREMENT,
-Type_name varchar(30) NOT NULL unique,
-PRIMARY KEY (Type_id)
 );
-
+    
 CREATE TABLE Sales
 (
 Sales_id int NOT NULL AUTO_INCREMENT,
@@ -34,6 +35,11 @@ CREATE TABLE BU (
 BU_id int not null PRIMARY KEY AUTO_INCREMENT,
 BU_name varchar(20) unique
 );
+
+ALTER TABLE Sales ADD FOREIGN KEY (Employee_id) REFERENCES Employee(Employee_id);
+ALTER TABLE Employee ADD FOREIGN KEY (Bu_id) REFERENCES Bu(Bu_id);
+ALTER TABLE Employee ADD FOREIGN KEY (Type_id) REFERENCES Employee_Type(Type_id);
+ALTER TABLE Employee ADD FOREIGN KEY (Sales_id) REFERENCES Sales(Sales_id);
 
 Insert into Employee_Type (Type_Name)
 values ('Sales');
@@ -71,7 +77,4 @@ select a.Bu_name as BusinessUnit,
        order by BU_name;
 
 
-ALTER TABLE Sales ADD FOREIGN KEY (Employee_id) REFERENCES Employee(Employe_id);
-ALTER TABLE Employee ADD FOREIGN KEY (Bu_id) REFERENCES Bu(Bu_id);
-ALTER TABLE Employee ADD FOREIGN KEY (Type_id) REFERENCES Employee_Type(Type_id);
 

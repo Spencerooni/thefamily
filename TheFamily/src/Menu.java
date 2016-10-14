@@ -21,6 +21,7 @@ public class Menu {
 
         DatabaseAccess db = new DatabaseAccess();
         List<Employee> employees = db.getEmployees();
+        List<String> fromReport;
 
         System.out.println("THE FAMILY DATABASE");
         System.out.println("\nLogin: Please enter your department: ");
@@ -80,10 +81,39 @@ public class Menu {
                             totalSales = keyboard.nextDouble();
 
                            db.createSalesEmployee(name, address, niNum, ibanNum, salary, buId, roleId, comRate, totalSales);
+                           employees = db.getEmployees();
+
+                            employees.stream()
+                                    .map(x ->
+                                            String.format("%s, %s, %s, %s, %s, %s, %s, %s",
+                                                    x.getId(),
+                                                    x.getName(),
+                                                    x.getAddress(),
+                                                    x.getNi_num(),
+                                                    x.getIBAN_num(),
+                                                    x.getSalary(),
+                                                    x.getBu_id(),
+                                                    x.getType_id())
+                                    ).forEach(System.out::println);
 
                         } else {
 
                             db.CreateEmployee(name, address, niNum, ibanNum, salary, buId, roleId);
+                            employees = db.getEmployees();
+
+                            employees.stream()
+                                    .map(x ->
+                                            String.format("%s, %s, %s, %s, %s, %s, %s, %s",
+                                                    x.getId(),
+                                                    x.getName(),
+                                                    x.getAddress(),
+                                                    x.getNi_num(),
+                                                    x.getIBAN_num(),
+                                                    x.getSalary(),
+                                                    x.getBu_id(),
+                                                    x.getType_id())
+                                    ).forEach(System.out::println);
+
                         }
 
                     } else if (choiceHRMenu == 2) {
@@ -94,7 +124,9 @@ public class Menu {
 
                         if (choiceReportMenu == 1) {
 
-                            db.EmpPerBu();
+                            fromReport = db.EmpPerBu();
+                            fromReport.stream()
+                                .forEach(System.out::println);
 
                         }
                     }
