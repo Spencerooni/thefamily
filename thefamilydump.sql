@@ -11,7 +11,6 @@ create table Employee (
     Salary decimal(8,2),
     Bu_id int,
     Type_id int,
-    Sales_id int unique,
     primary key (Employee_id)
     );
     
@@ -27,6 +26,7 @@ CREATE TABLE Sales
 Sales_id int NOT NULL AUTO_INCREMENT,
 Commission_rate decimal(5,2) NOT NULL,
 Sales_total int NOT NULL,
+Employee_id int NOT NULL,
 PRIMARY KEY (Sales_id)
 );
 
@@ -71,5 +71,7 @@ select a.Bu_name as BusinessUnit,
        order by BU_name;
 
 
-ALTER TABLE Employee ADD FOREIGN KEY (Sales_id) REFERENCES Sales(sales_id);
+ALTER TABLE Sales ADD FOREIGN KEY (Employee_id) REFERENCES Employee(Employe_id);
+ALTER TABLE Employee ADD FOREIGN KEY (Bu_id) REFERENCES Bu(Bu_id);
+ALTER TABLE Employee ADD FOREIGN KEY (Type_id) REFERENCES Employee_Type(Type_id);
 
