@@ -39,5 +39,7 @@ public class Main {
                                 x.getBu_id(),
                                 x.getType_id())
                 ).forEach(System.out::println);
+
+        db.EmpPerBu();
     }
 }

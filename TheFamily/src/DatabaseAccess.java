@@ -10,7 +10,7 @@ public class DatabaseAccess {
         try {
             conn =
                     DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false",
-                            "root", "password");
+                            "root", "T!a1a!ng0");
 
             PreparedStatement prep1 = conn.prepareStatement(
                     "Select Employee_id, Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id from Employee order by Employee_id desc");
@@ -47,7 +47,7 @@ public class DatabaseAccess {
 
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "password");
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "T!a1a!ng0");
             String sql = String.format("insert into Employee (Name, Address, Ni_num, IBAN_num, Salary, Bu_id, Type_id) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", name, address, ni_num, iban_num, salary, bu_id, type_id);
 
             System.out.println(sql);
@@ -64,5 +64,46 @@ public class DatabaseAccess {
             System.out.println("VendorError: " + ex.getErrorCode());
 
         }
+
     }
+
+    public List<String> EmpPerBu(){
+        Connection conn = null;
+        List<String> employees = new ArrayList<String>();
+
+        try {
+            conn =
+                    DriverManager.getConnection("jdbc:mysql://localhost/TheFamily?useSSL=false", "root", "T!a1a!ng0");
+            String sql = String.format("select * from emp_per_bu");
+
+            System.out.println(sql);
+
+            PreparedStatement empbuPrep = conn.prepareStatement(sql);
+
+            ResultSet result = empbuPrep.executeQuery();
+
+            while (result.next()) {
+                Employee employee = new Employee();
+                employee.setName(result.getString("Employee"));
+
+                BU bu = new BU();
+                bu.setName(result.getString("BusinessUnit"));
+
+                String fin = employee.toString() + " " + bu.toString();
+
+                employees.add(fin);
+
+                System.out.println(fin);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+
+        }
+
+        return employees;
+
+    }
+
 }
